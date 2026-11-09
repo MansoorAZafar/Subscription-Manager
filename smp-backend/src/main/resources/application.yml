@@ -1,0 +1,24 @@
+server:
+  port: ${PORT:8080}
+spring:
+  config:
+    import:
+      - optional:file:.env[.properties]
+      - optional:file:smp-backend/.env[.properties]
+  profiles:
+    default: local
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${AUTH0_ISSUER_URI:https://your-tenant.us.auth0.com/}
+  jpa:
+    open-in-view: false
+app:
+  auth0:
+    email-claim: ${AUTH0_EMAIL_CLAIM:https://subscript.app/email}
+    email-verified-claim: ${AUTH0_EMAIL_VERIFIED_CLAIM:https://subscript.app/email_verified}
+  cors:
+    allowed-origin: ${FRONTEND_ORIGIN:http://localhost:5173}
+  sharing:
+    frontend-origin: ${FRONTEND_ORIGIN:http://localhost:5173}

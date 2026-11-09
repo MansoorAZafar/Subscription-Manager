@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: smp-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: smp
+      POSTGRES_USER: smp
+      POSTGRES_PASSWORD: smp
+    ports:
+      - "5432:5432"
+    volumes:
+      - smp-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smp -d smp"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  smp-postgres-data:

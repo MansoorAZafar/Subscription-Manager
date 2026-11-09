@@ -1,0 +1,23 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Node
+node_modules/
+**/node_modules/
+dist/
+npm-debug.log*
+
+# Java / Maven
+**/target/
+.m2/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
