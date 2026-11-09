@@ -32,3 +32,10 @@ exports.onExecutePostLogin = async (event, api) => {
 
 Keep `AUTH0_EMAIL_CLAIM` and `AUTH0_EMAIL_VERIFIED_CLAIM` aligned with those names. The claims bind invite acceptance to the verified invitee. Creating an invitation returns a secure, one-time link for the entered email address; the app stores only a hash of its random token, and the link expires after seven days. Share that link with the invitee manually. The invitation can only be accepted by signing in with the verified email address it was created for.
 
+## Tests and CI
+
+- Backend: `cd smp-backend && mvn verify` runs the JUnit suite and packages the Spring Boot application.
+- Frontend: `cd smp-frontend && npm test` runs the Node test suite; `npm run build` creates the production bundle.
+- GitHub Actions runs both projects' checks for pushes and relevant pull requests. Push a `bv*` tag (for example, `bv0.1.0`) to publish the backend image to Docker Hub. Configure the repository secrets `DOCKERHUB_USERNAME` and `DOCKERHUB_TOKEN`; `RENDER_DEPLOY_HOOK` is optional.
+- The published image uses the `neon` profile. Configure `NEON_JDBC_URL`, `NEON_MIGRATION_JDBC_URL`, `NEON_DB_USERNAME`, `NEON_DB_PASSWORD`, and the required Auth0 settings in the deployment environment.
+

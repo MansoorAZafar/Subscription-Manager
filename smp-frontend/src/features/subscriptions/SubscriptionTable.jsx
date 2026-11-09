@@ -7,7 +7,7 @@ import {
   EditOutlined,
   Search,
 } from "@mui/icons-material";
-import { useSmp } from "../../app/SmpProvider.jsx";
+import { SUBSCRIPTIONS_PAGE_SIZE, useSmp } from "../../app/SmpProvider.jsx";
 
 const money = (value) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(
@@ -164,7 +164,8 @@ export default function SubscriptionTable() {
       <div className="table-footer">
         Showing{" "}
         <b>
-          {items.length ? page * 25 + 1 : 0}–{page * 25 + items.length}
+          {items.length ? page * SUBSCRIPTIONS_PAGE_SIZE + 1 : 0}–
+          {page * SUBSCRIPTIONS_PAGE_SIZE + items.length}
         </b>{" "}
         of <b>{totalElements}</b> subscriptions{" "}
         <div className="pager">

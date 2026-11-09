@@ -10,6 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { createApiClient } from "../api/apiClient.js";
 
 const SmpContext = createContext(null);
+export const SUBSCRIPTIONS_PAGE_SIZE = 5;
 const searchParams = () => new URLSearchParams(window.location.search);
 const toView = (row) => ({
   ...row,
@@ -111,7 +112,7 @@ export function SmpProvider({ children }) {
         const params = new URLSearchParams({
           householdId: selectedWorkspace.id,
           page,
-          size: 25,
+          size: SUBSCRIPTIONS_PAGE_SIZE,
         });
         if (debouncedSearch) params.set("search", debouncedSearch);
         if (filter !== "All subscriptions") params.set("category", filter);
