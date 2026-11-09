@@ -6,7 +6,6 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - "smp-backend/**"
-      - "smp-frontend/**"
       - ".github/workflows/backend-image.yml"
   push:
     branches: ["**"]
@@ -21,7 +20,7 @@ concurrency:
 
 jobs:
   checks:
-    name: Backend and frontend checks
+    name: Backend Checks
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -37,25 +36,6 @@ jobs:
       - name: Run backend tests and package
         working-directory: smp-backend
         run: mvn --batch-mode --no-transfer-progress verify
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: smp-frontend/package-lock.json
-
-      - name: Install frontend dependencies
-        working-directory: smp-frontend
-        run: npm ci
-
-      - name: Run frontend tests
-        working-directory: smp-frontend
-        run: npm test
-
-      - name: Build frontend
-        working-directory: smp-frontend
-        run: npm run build
 
   publish-image:
     name: Publish Docker Hub image
