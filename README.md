@@ -1,6 +1,6 @@
 # Subscription Management Platform
 
-Two-project portfolio starter for tracking recurring charges.
+Subscription Manager that allows users to  keep track of all their subscriptions in one place.
 
 ## Projects
 - `smp-frontend`: React + Vite + JavaScript + Material UI + Recharts + Auth0 React SDK.
